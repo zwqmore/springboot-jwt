@@ -25,8 +25,8 @@ public class TestController {
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     public String getToken(@RequestBody JSONObject jsonObject) {
         JSONObject data = jsonObject.getJSONObject("data");
-        boolean a = Integer.valueOf(1).equals((Integer) data.get("id"));
-        boolean b = "zwqzwq".equals((String) data.get("pass"));
+        boolean a = Integer.valueOf(1).equals(data.get("id"));
+        boolean b = "zwqzwq".equals(data.get("pass"));
         System.out.println("a,b:" + a + b);
         if (a && b) {
             Map<String, Object> map;

@@ -2,7 +2,6 @@ package com.example.testjwt.pojo;
 
 /**
  * description: 用户类
- *
  * @author zwq
  * @date 2021/9/8 14:46
  */

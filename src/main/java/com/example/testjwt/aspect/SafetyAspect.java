@@ -1,31 +1,19 @@
 package com.example.testjwt.aspect;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.testjwt.config.TokenCheckAnnotation;
 import com.example.testjwt.exception.AuthenticateException;
 import com.example.testjwt.utils.JwtTokenUtils;
 import com.example.testjwt.utils.response.ResponseServer;
 import com.example.testjwt.utils.response.ServerEnum;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.media.sound.SoftTuning;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.print.attribute.standard.JobSheets;
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.SchemaOutputResolver;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
 
 /**
  * description: 切面
@@ -55,9 +43,6 @@ public class SafetyAspect {
 
         Object obj = null;
 
-        //request对象
-        HttpServletRequest request = attributes.getRequest();
-
         //方法的形参参数
         Object[] args = pjp.getArgs();
 
@@ -74,7 +59,7 @@ public class SafetyAspect {
 
         String token = (String)jsonObject.get("Authorization-token");
 
-        JSONObject data = (JSONObject)jsonObject.getJSONObject("data");
+        JSONObject data = jsonObject.getJSONObject("data");
 
         if(data == null){
             throw new AuthenticateException(ServerEnum.ERROR);
@@ -105,7 +90,6 @@ public class SafetyAspect {
         }
 
         return obj;
-
 
     }
 }

@@ -1,7 +1,7 @@
 package com.example.testjwt.utils.response;
 
 /**
- * description: 对前端返回过来的数据进行判断
+ * description: 返回的数据
  *
  * @author zwq
  * @date 2021/9/8 14:56
